@@ -20,7 +20,7 @@ namespace codeiggnus.employeedetail.controllers.Controllers
         {
             this.service = service;
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult CreateUser([FromBody]EmployeeInfoModel employeeInfoModel)
         {

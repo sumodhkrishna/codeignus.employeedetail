@@ -13,5 +13,6 @@ namespace codeignus.employeedetails.core.Interfaces.Services
         EmployeeInfoModel Update(EmployeeInfoModel employeeInfoModel);
         List<EmployeeInfoModel> GetUsers();
         bool DeleteUser(long id);
+        EmployeeInfoModel GetUserByUserName(string userName);
     }
 }

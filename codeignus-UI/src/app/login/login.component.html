@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+      <div class="col-6">
+        <form  #loginForm="ngForm" (ngSubmit)="loginUser(loginForm.value)">
+          <div class="form-group">
+            <label for="exampleInputEmail1">User Name</label>
+            <input type="text" name="userName" ngModel #userName="ngModel" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password"  ngModel #password="ngModel" required class="form-control" id="exampleInputPassword1">
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>

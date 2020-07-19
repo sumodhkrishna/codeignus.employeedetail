@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form #loginForm="ngForm" (ngSubmit)="registerUser(loginForm.value)">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">User Name</label>
+                    <input type="text" name="userName" ngModel #userName="ngModel" value="" class="form-control"
+                        id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" name="password" ngModel #password="ngModel" value="" required
+                        class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Department</label>
+                    <input type="text" name="dept" ngModel #dept="ngModel" value="" required class="form-control"
+                        id="dept">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Sub Department</label>
+                    <input type="text" name="subDept" ngModel #subDept="ngModel" value="" required class="form-control"
+                        id="subdept">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Date of Birth</label>
+
+                    <input type="date" placeholder="Datepicker" name="dob" value="" class="form-control" ngModel
+                        #dob="ngModel" required bsDatepicker>
+
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+</div>

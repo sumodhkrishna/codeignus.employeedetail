@@ -40,7 +40,8 @@ namespace codeiggnus.employeedetail.controllers
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerGen(c=> {
+            services.AddSwaggerGen(c =>
+            {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "EmployeeDetails API",
@@ -89,7 +90,7 @@ namespace codeiggnus.employeedetail.controllers
                    options.TokenValidationParameters = new TokenValidationParameters
                    {
                        ValidateIssuer = true,
-                       ValidateAudience = true,
+                       ValidateAudience = false,
                        ValidateLifetime = true,
                        ValidateIssuerSigningKey = true,
                        ValidIssuer = Configuration["Jwt:Issuer"],
@@ -110,6 +111,7 @@ namespace codeiggnus.employeedetail.controllers
                     options.UseSqlServer(Configuration["ConnectionStrings:DbConnectionString"]);
                 }
             );
+
         }
         public void ConfigureContainer(ContainerBuilder containerBuilder)
         {
@@ -132,7 +134,9 @@ namespace codeiggnus.employeedetail.controllers
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
+            };
+            app.UseCors(builder =>
+                builder.WithOrigins("http://localhost:4200"));
             app.UseSwagger();
             app.UseSwaggerUI(c =>
                     {

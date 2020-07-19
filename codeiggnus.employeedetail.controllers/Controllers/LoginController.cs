@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using codeignus.employeedetails.core.Authorization;
+using codeignus.employeedetails.core.Interfaces.Services;
 using codeignus.employeedetails.core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -20,19 +21,21 @@ namespace codeiggnus.employeedetail.controllers.Controllers
     public class LoginController : ControllerBase
     {
         public IConfiguration configuration;
+        public IUserService userService;
         private List<EmployeeInfoModel> appUsers = new List<EmployeeInfoModel>
         {
             new EmployeeInfoModel(){ UserName="sumodhkrishna", Password="password", Role = AuthorizationPolicies.ADMIN}
         };
 
-        public LoginController(IConfiguration configuration)
+        public LoginController(IConfiguration configuration, IUserService userService)
         {
             this.configuration = configuration;
+            this.userService = userService;
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Login(EmployeeInfoModel userInfo)
+        public IActionResult Login(LoginModel userInfo)
         {
             var user = AuthenticateUser(userInfo);
             if (user != null)
@@ -56,9 +59,9 @@ namespace codeiggnus.employeedetail.controllers.Controllers
         {
             return this.Ok("Working");
         }
-        EmployeeInfoModel AuthenticateUser(EmployeeInfoModel loginCredentials)
+        EmployeeInfoModel AuthenticateUser(LoginModel loginCredentials)
         {
-            var user = appUsers.SingleOrDefault(x => x.UserName == loginCredentials.UserName && x.Password == loginCredentials.Password);
+            var user = this.userService.GetUserByUserName(loginCredentials.UserName);
             return user;
         }
 

@@ -38,6 +38,11 @@ namespace codeignus.employeedetails.core.Interfaces.Provider
             return false;
         }
 
+        public EmployeeInfo GetByUserName(string userName)
+        {
+            return dbContext.EmployeeInfo.Where(e => e.UserName == userName).FirstOrDefault();
+        }
+
         public List<EmployeeInfo> GetUsers()
         {
             return dbContext.EmployeeInfo.ToList();

@@ -32,6 +32,11 @@ namespace codeignus.emplyeedetail.services.Services
             return provider.DeleteUser(id);
         }
 
+        public EmployeeInfoModel GetUserByUserName(string userName)
+        {
+            return this.mapper.Map<EmployeeInfoModel>(this.provider.GetByUserName(userName));
+        }
+
         public List<EmployeeInfoModel> GetUsers()
         {
             var employees = this.provider.GetUsers();
